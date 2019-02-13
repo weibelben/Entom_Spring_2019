@@ -1,0 +1,63 @@
+###############################################################################
+    ##### ExtraHop Coding Challenge Problem ##### 1/16/2019 ######
+    # @author Ben Weibel -- (425) 260-3067 -- weibelben@gmail.com
+###############################################################################
+
+Hello ExtraHop,
+Here is a brief breakdown of my python program as well as a few comments about 
+the solution.
+
+The solution that I got was 'LIVING'. However, there is another 6 letter word 
+in the text that could be found in the grid using the procedure defined.
+That word was 'LINING'. 
+
+About the code:
+        Starting at the bottom, my main method either 
+ 1. runs the example problem, resulting in 'fortran', that was showed in the 
+ spec, or 
+ 2. parses an input file and populates a dictionary of words using the 
+tokenize_input_file method defined directly above main.
+depending on if it is called with any system arguments
+    Usage:
+        ./ExtraHopChallenge.py ./shakespear.txt
+
+        tokenize_input_file 
+creates a dictionary because a dictionary automatically removes duplicate 
+words when it is updated. Both the key and value are both the parsed string.
+
+        find_longest_word
+iterates through the dictionary of words and calls grid_contains_word to assess
+whether each word exists in the grid. The length of each word is compared to 
+the length of the current longest discovered word. If the candidate word is 
+shorter, it is ignored and not looked for in the grid.
+
+        grid_contains_word
+finds the locations of the first letter of the candidate word in the grid. 
+Calls find_word_in_grid on each of those locations.
+
+        find_word_in_grid
+Recursively calls itself on each of the 8 possible knight moves from a given 
+location on the grid. I considered multiple shortcuts to avoid checking the 
+boundary conditions of all 8 potential locations separately but decided that 
+the code would be cleanest and most concise with each case separate. 
+I also considered adding a buffer arround the grid of width 2 and filling it
+with 1 digit integers that would never be found equal to the letters of a 
+candidate word, thus avoiding bound checking. 
+It would look like this:
+
+0 0 0 0 0 0 0 ...
+0 0 0 0 0 0 ...
+0 0 Q W E ...
+0 0 O P ...
+0 0 T ...
+0 0 ...
+...
+
+I decided to go with the exhaustive condition checking. 
+
+
+
+Thank you so much for your consideration!
+
+Best,
+Ben Weibel
